@@ -7,6 +7,8 @@
 <body>
 	<canvas id = "canvas" width = "500" height = "500"></canvas>
 
+	
+	<script src = "Class_Block.js"></script>
 	<script src = "https://code.jquery.com/jquery-2.1.0.js"></script>
 
 	<script>
@@ -20,7 +22,7 @@
 
 	var colors = ["Blue", "Yellow"]
 
-	var blockSize = 50;
+	var blockSize = 10;
 	var widthInBlocks = width / blockSize;
 	var heightInBlocks = height / blockSize;
 
@@ -63,29 +65,6 @@
 		};
 	};
 
-	var Block = function (col, row) {
-		this.col = col;
-		this.row = row;
-	};
-
-	Block.prototype.drawSquare = function (color) {
-		var x = this.col * blockSize;
-		var y = this.row * blockSize;
-		ctx.fillStyle = color;
-		ctx.fillRect(x, y, blockSize, blockSize);
-	};
-
-	Block.prototype.drawCircle = function (color) {
-		var centerX = this.col * blockSize + blockSize / 2;
-		var centerY = this.row * blockSize + blockSize / 2;
-		ctx.fillStyle = color;
-		circle(centerX, centerY, blockSize / 2, true);
-	};
-
-	Block.prototype.equal = function (otherBlock) {
-		return this.col === otherBlock.col && this.row === otherBlock.row;
-	};
-
 	var Snake = function () {
 		this.segments = [
 			new Block(7, 5),
@@ -97,12 +76,12 @@
 	};
 
 	Snake.prototype.draw = function () {
-		this.segments[0].drawSquare("Green");
+		this.segments[0].drawSquare();
 		for (var i = 1; i < this.segments.length; i++) {
 			if (i % 2 === 0) {
-				this.segments[i].drawSquare("Blue");
+				this.segments[i].drawSquare();
 			} else {
-				this.segments[i].drawSquare("Yellow");
+				this.segments[i].drawSquare();
 			}
 		};
 	};
@@ -177,7 +156,7 @@
 	};
 
 	Apple.prototype.draw = function () {
-		this.position.drawCircle("LimeGreen");
+		this.position.drawCircle();
 	};
 
 	Apple.prototype.move = function () {
