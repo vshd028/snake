@@ -9,7 +9,7 @@ class Snake {
         direction = "right";
         nextDirection = "right"
     }
-    draw() {
+    drawSnake() {
         this.segments[0].drawSquare();
         for (var i = 1; i < this.segments.length; i++) {
             if (i % 2 === 0) {
@@ -20,7 +20,7 @@ class Snake {
         };
     }
 
-    move() {
+    moveSnake() {
         let head = this.segments[0];
         let newHead;
 

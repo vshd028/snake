@@ -10,26 +10,27 @@
 	
 	<script src = "E:\snake\Classes\Block.js"></script>
 	<script src = "E:\snake\Classes\Snake.js"></script>
+	<script src = "E:\snake\Classes\Apple.js"></script>
 	<script src = "https://code.jquery.com/jquery-2.1.0.js"></script>
 
 	<script>
-	var canvas = document.getElementById("canvas");
-	var ctx = canvas.getContext("2d");
+	let canvas = document.getElementById("canvas");
+	let ctx = canvas.getContext("2d");
 
-	var width = canvas.width;
-	var height = canvas.height;
+	let width = canvas.width;
+	let height = canvas.height;
 
-	var isGameOver = false
+	let isGameOver = false
 
-	var colors = ["Blue", "Yellow"]
+	let colors = ["Blue", "Yellow"]
 
-	var blockSize = 10;
-	var widthInBlocks = width / blockSize;
-	var heightInBlocks = height / blockSize;
+	let blockSize = 10;
+	let widthInBlocks = width / blockSize;
+	let heightInBlocks = height / blockSize;
 
-	var score = 0;
+	let score = 0;
 
-	var drawBorder = function() {
+	let drawBorder = function() {
 		ctx.fillStyle = "Gray";
 		ctx.fillRect(0, 0, width, blockSize);
 		ctx.fillRect(0, height - blockSize, width, blockSize);
@@ -37,7 +38,7 @@
 		ctx.fillRect(width - blockSize, 0, blockSize, height);
 	};
 
-	var drawScore = function () {
+	let drawScore = function () {
 		ctx.font = "20px Comic Sans MS";
 		ctx.fillStyle = "Black";
 		ctx.textAlign = "left";
@@ -45,7 +46,7 @@
 		ctx.fillText("Score: " + score, blockSize, blockSize);
 	};
 
-	var gameOver = function () {
+	let gameOver = function () {
 		isGameOver = true;
 		clearTimeout(gameLoop);
 		ctx.font = "60px Comic Sans MS";
@@ -55,7 +56,7 @@
 		ctx.fillText("Game Over", width / 2, height / 2);
 	};
 
-	var circle = function (x, y, radius, fillCircle) {
+	let circle = function (x, y, radius, fillCircle) {
 		ctx.beginPath();
 		ctx.arc(x, y, radius, 0, Math.PI * 2, false);
 
@@ -66,36 +67,12 @@
 		};
 	};
 
+	let snake = new Snake();
+	let apple = new Apple();
 
-	var Apple = function () {
-		this.position = new Block(3, 3);
-	};
+	let animationTime = 100;
 
-	Apple.prototype.draw = function () {
-		this.position.drawCircle();
-	};
-
-	Apple.prototype.move = function () {
-		var isAppleOnSnake = false
-		var randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
-		var randomRow = Math.floor(Math.random() * (heightInBlocks - 2)) + 1;
-		this.position = new Block(randomCol, randomRow);
-		for (var i = 0; i < snake.segments.length; i++) {
-			if (snake.segments[i].equal(this.position)) {
-				isAppleOnSnake = true;
-			};
-		};
-		if (isAppleOnSnake === true) {
-			this.move();
-		};
-	};
-
-	var snake = new Snake();
-	var apple = new Apple();
-
-	var animationTime = 100;
-
-	var gameLoop = function () {
+	let gameLoop = function () {
 		ctx.clearRect(0, 0, width, height);
 		drawScore();
 		snake.move();
@@ -107,7 +84,7 @@
 		};
 	};
 
-	var directions = {
+	let directions = {
 		37: "left",
 		38: "up",
 		39: "right",
@@ -115,7 +92,7 @@
 	};
 
 	$("body").keydown(function (event) {
-		var newDirection = directions[event.keyCode];
+		let newDirection = directions[event.keyCode];
 		if (newDirection !== undefined) {
 			snake.setDirection(newDirection);
 		};
