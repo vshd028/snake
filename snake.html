@@ -11,6 +11,7 @@
 	<script src = "E:\snake\Classes\Block.js"></script>
 	<script src = "E:\snake\Classes\Snake.js"></script>
 	<script src = "E:\snake\Classes\Apple.js"></script>
+	<script src = "E:\snake\Classes\Main_body.js"></script>
 	<script src = "https://code.jquery.com/jquery-2.1.0.js"></script>
 
 	<script>
@@ -20,7 +21,7 @@
 	let width = canvas.width;
 	let height = canvas.height;
 
-	let isGameOver = false
+	let isGameOver = false;
 
 	let colors = ["Blue", "Yellow"]
 
@@ -30,42 +31,11 @@
 
 	let score = 0;
 
-	let drawBorder = function() {
-		ctx.fillStyle = "Gray";
-		ctx.fillRect(0, 0, width, blockSize);
-		ctx.fillRect(0, height - blockSize, width, blockSize);
-		ctx.fillRect(0, 0, blockSize, height);
-		ctx.fillRect(width - blockSize, 0, blockSize, height);
-	};
-
-	let drawScore = function () {
-		ctx.font = "20px Comic Sans MS";
-		ctx.fillStyle = "Black";
-		ctx.textAlign = "left";
-		ctx.textBaseline = "top";
-		ctx.fillText("Score: " + score, blockSize, blockSize);
-	};
-
-	let gameOver = function () {
-		isGameOver = true;
-		clearTimeout(gameLoop);
-		ctx.font = "60px Comic Sans MS";
-		ctx.fillStyle = "Black";
-		ctx.textAlign = "center";
-		ctx.textBaseline = "middle";
-		ctx.fillText("Game Over", width / 2, height / 2);
-	};
-
-	let circle = function (x, y, radius, fillCircle) {
-		ctx.beginPath();
-		ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-
-		if (fillCircle) {
-			ctx.fill();
-		} else {
-			ctx.stroke();
-		};
-	};
+	let main_Body = new Main_body();
+	let drawBorder = main_Body.Border();
+	let drawScore = main_Body.Score();
+	let gameOver = main_Body.Game_over();
+	let circle = main_Body.Circle();
 
 	let snake = new Snake();
 	let apple = new Apple();
@@ -74,10 +44,10 @@
 
 	let gameLoop = function () {
 		ctx.clearRect(0, 0, width, height);
-		drawScore();
-		snake.move();
-		snake.draw();
-		apple.draw();
+		drawScore;
+		snake.moveSnake();
+		snake.drawSnake();
+		apple.drawApple();
 		drawBorder();
 		if (isGameOver === false) {
 			setTimeout(gameLoop, animationTime)

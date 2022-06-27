@@ -36,8 +36,8 @@ class Snake {
             newHead = new Block(head.col, head.row - 1);
         };
 
-        if (checkCollision(newHead)) {
-            gameOver();
+        if (this.checkCollision(newHead)) {
+            gameOver(gameloop);
             return;
         };
 
