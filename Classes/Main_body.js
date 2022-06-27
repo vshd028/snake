@@ -37,4 +37,13 @@ class Main_body {
 			ctx.stroke();
 		};
 	}
+
+	Gameloop() {
+		ctx.clearRect(0, 0, width, height);
+		drawScore;
+		snake.moveSnake();
+		snake.drawSnake();
+		apple.drawApple();
+		drawBorder();
+	}
 }

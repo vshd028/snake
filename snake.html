@@ -42,16 +42,9 @@
 
 	let animationTime = 100;
 
-	let gameLoop = function () {
-		ctx.clearRect(0, 0, width, height);
-		drawScore;
-		snake.moveSnake();
-		snake.drawSnake();
-		apple.drawApple();
-		drawBorder();
-		if (isGameOver === false) {
-			setTimeout(gameLoop, animationTime)
-		};
+	let gameLoop = main_Body.Gameloop();
+	if (isGameOver === false) {
+		setTimeout(gameLoop, animationTime)
 	};
 
 	let directions = {
@@ -68,7 +61,7 @@
 		};
 	});
 
-	gameLoop();
+	gameLoop;
 	</script>
 </body>
 </html>
