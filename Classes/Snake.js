@@ -1,15 +1,16 @@
 
 class Snake {
-    constructor(segments, direction, nextDirection) {
-        segments = [
+    constructor(mainBody) {
+        this.mainBody = mainBody;
+        this.segments = [
             new Block(7, 5),
 			new Block(6, 5),
 			new Block(5, 5)
         ];
-        direction = "right";
-        nextDirection = "right"
+        this.direction = "right";
+        this.nextDirection = "right"
     }
-    drawSnake() {
+    draw() {
         this.segments[0].drawSquare();
         for (var i = 1; i < this.segments.length; i++) {
             if (i % 2 === 0) {
@@ -20,7 +21,7 @@ class Snake {
         };
     }
 
-    moveSnake() {
+    move() {
         let head = this.segments[0];
         let newHead;
 
@@ -37,41 +38,40 @@ class Snake {
         };
 
         if (this.checkCollision(newHead)) {
-            gameOver(gameloop);
+            mainBody.gameOver();
             return;
         };
 
         this.segments.unshift(newHead);
 
         if (newHead.equal(apple.position)) {
-            score++;
-            animationTime --;
-            apple.move();
+            apple.move(this.segments);
+            this.mainBody.score++;
+            this.mainBody.animationTime --;
         } else {
             this.segments.pop();
         };
     }
 
     checkCollision(head) {
-        let leftCollision = new Block(head.col === 0);
-        let topCollision = new Block(head.row === 0);
-        let rightCollision = new Block(head.col === widthInBlocks - 1);
-        let bottomCollision = new Block(head.row === heightInBlocks - 1);
+        let leftCollision = head.col === 0
+        let topCollision = head.row === 0
+        let rightCollision = head.col === this.mainBody.widthInBlocks - 1
+        let bottomCollision = head.row === this.mainBody.heightInBlocks - 1
 
         let wallCollision = leftCollision || topCollision || rightCollision || bottomCollision;
 
         let selfCollision = false; 
-
+        
         for (var i = 0; i < this.segments.length; i++) {
             if (head.equal(this.segments[i])) {
                 selfCollision = true;
             };
         };
-
         return wallCollision || selfCollision
     }
 
-    setDirection() {
+    setDirection(newDirection) {
         if (this.direction === "up" && newDirection === "down") {
 			return;
 		} else if (this.direction === "right" && newDirection === "left") {

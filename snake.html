@@ -8,60 +8,21 @@
 	<canvas id = "canvas" width = "500" height = "500"></canvas>
 
 	
-	<script src = "E:\snake\Classes\Block.js"></script>
-	<script src = "E:\snake\Classes\Snake.js"></script>
-	<script src = "E:\snake\Classes\Apple.js"></script>
-	<script src = "E:\snake\Classes\Main_body.js"></script>
+	<script src = "./Classes/Snake.js"></script>
+	<script src = "./Classes/Apple.js"></script>
+	<script src = "./Classes/Block.js"></script>
+	<script src = "./Classes/MainBody.js"></script>
+	<script src = "./Classes/Controls.js"></script>
 	<script src = "https://code.jquery.com/jquery-2.1.0.js"></script>
 
 	<script>
-	let canvas = document.getElementById("canvas");
-	let ctx = canvas.getContext("2d");
-
-	let width = canvas.width;
-	let height = canvas.height;
-
-	let isGameOver = false;
-
-	let colors = ["Blue", "Yellow"]
-
 	let blockSize = 10;
-	let widthInBlocks = width / blockSize;
-	let heightInBlocks = height / blockSize;
-
-	let score = 0;
-
-	let main_Body = new Main_body();
-	let drawBorder = main_Body.Border();
-	let drawScore = main_Body.Score();
-	let gameOver = main_Body.Game_over();
-	let circle = main_Body.Circle();
-
-	let snake = new Snake();
-	let apple = new Apple();
-
-	let animationTime = 100;
-
-	let gameLoop = main_Body.Gameloop();
-	if (isGameOver === false) {
-		setTimeout(gameLoop, animationTime)
-	};
-
-	let directions = {
-		37: "left",
-		38: "up",
-		39: "right",
-		40: "down"
-	};
-
-	$("body").keydown(function (event) {
-		let newDirection = directions[event.keyCode];
-		if (newDirection !== undefined) {
-			snake.setDirection(newDirection);
-		};
-	});
-
-	gameLoop;
+	let ctx = canvas.getContext("2d");
+	let mainBody = new MainBody();
+	let snake = new Snake(mainBody);
+	let apple = new Apple(mainBody);
+	mainBody.gameLoop()
+    new Controls();
 	</script>
 </body>
 </html>
