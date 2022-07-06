@@ -8,7 +8,7 @@ class Snake {
 			new Block(5, 5)
         ];
         this.direction = "right";
-        this.nextDirection = "right"
+        this.nextDirection = "right";
     }
     draw() {
         this.segments[0].drawSquare();
@@ -22,11 +22,18 @@ class Snake {
     }
 
     move() {
+
+        let GameOver = new Audio("Classes/GameOver.mp3")
+        let SoundApple = new Audio("Classes/SoundApple.mp3")
+
         let head = this.segments[0];
         let newHead;
 
         this.direction = this.nextDirection;
 
+        if (this.direction === "space") {
+            gameLoop()
+        }
         if (this.direction === "right") {
             newHead = new Block(head.col + 1, head.row);
         } else if (this.direction === "down") {
@@ -39,6 +46,7 @@ class Snake {
 
         if (this.checkCollision(newHead)) {
             mainBody.gameOver();
+            GameOver.play();
             return;
         };
 
@@ -48,6 +56,7 @@ class Snake {
             apple.move(this.segments);
             this.mainBody.score++;
             this.mainBody.animationTime --;
+            SoundApple.play();
         } else {
             this.segments.pop();
         };

@@ -42,6 +42,12 @@ class MainBody {
 		ctx.fillRect(this.width - blockSize, 0, blockSize, this.height);
     }
 
+	start(direction) {
+		if (direction === "space") {
+			this.gameLoop()
+		}
+	}
+
 	gameLoop() {
 		if (this.isGameOver === false) {
 			setTimeout(()=>{
