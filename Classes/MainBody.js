@@ -1,5 +1,6 @@
 class MainBody {
     constructor () {
+		// this.snake1 = snake1
 		let canvas = document.getElementById("canvas");
 
 	
@@ -42,11 +43,11 @@ class MainBody {
 		ctx.fillRect(this.width - blockSize, 0, blockSize, this.height);
     }
 
-	start(direction) {
-		if (direction === "space") {
-			this.gameLoop()
-		}
-	}
+	// start() {
+	// 	if (this.snake1.direction === "space") {
+	// 		this.gameLoop()
+	// 	}
+	// }
 
 	gameLoop() {
 		if (this.isGameOver === false) {
@@ -61,4 +62,17 @@ class MainBody {
 			}, this.animationTime)
 		};
 	}
+
+	// gameLoop1() {
+	// 		clearTimeout()
+	// 		setTimeout(()=>{
+	// 			ctx.clearRect(0, 0, this.width, this.height);
+	// 			this.drawScore();
+	// 			snake.move();
+	// 			snake.draw();
+	// 			apple.draw();
+	// 			this.border();
+	// 			this.gameLoop1()
+	// 		}, this.animationTime)
+	// }
 }

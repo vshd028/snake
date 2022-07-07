@@ -21,6 +21,12 @@ class Snake {
         };
     }
 
+    // start() {
+    //     if (this.direction === "space") {
+    //         this.mainBody.gameLoop()
+    //     }
+    // }
+
     move() {
 
         let GameOver = new Audio("Classes/GameOver.mp3")
@@ -31,9 +37,9 @@ class Snake {
 
         this.direction = this.nextDirection;
 
-        if (this.direction === "space") {
-            gameLoop()
-        }
+        // if (this.direction === "space") {
+        //     this.mainBody.gameLoop()
+        // }
         if (this.direction === "right") {
             newHead = new Block(head.col + 1, head.row);
         } else if (this.direction === "down") {
@@ -45,7 +51,7 @@ class Snake {
         };
 
         if (this.checkCollision(newHead)) {
-            mainBody.gameOver();
+            this.mainBody.gameOver();
             GameOver.play();
             return;
         };

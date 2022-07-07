@@ -4,7 +4,7 @@
 	<title>Snake</title>
 </head>
 
-<body>
+<body  id="key">
 	<canvas id = "canvas" width = "500" height = "500"></canvas>
 
 	
@@ -15,13 +15,34 @@
 	<script src = "./Classes/Controls.js"></script>
 	<script src = "https://code.jquery.com/jquery-2.1.0.js"></script>
 
+	<button type="submit" class="btn btn-success" id="Restart">Restart</button>
+
+	<!-- <div>
+		<input type="text" id="key">
+	</div> -->
+
 	<script>
+
+	document.querySelector("#Restart").onclick = function () {
+		if (mainBody.isGameOver === true) {
+			ctx.clearRect(0, 0, mainBody.width, mainBody.height);
+			mainBody.gameLoop1();
+		}
+		
+	};	
+
+	document.querySelector("#key").onkeypress = function (event) {
+		console.log("code: " + event.code)
+		if (event.code === "NumpadEnter") {
+			mainBody.gameLoop()
+		}
+	}
+	
 	let blockSize = 10;
 	let ctx = canvas.getContext("2d");
 	let mainBody = new MainBody();
 	let snake = new Snake(mainBody);
 	let apple = new Apple(mainBody);
-	mainBody.gameLoop()
     new Controls();
 	</script>
 </body>
