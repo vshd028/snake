@@ -2,37 +2,44 @@
 <html>
 <head>
 	<title>Snake</title>
+	<link rel="stylesheet" type="text/css" href="snake.css">
 </head>
 
 <body  id="key">
 	<canvas id = "canvas" width = "500" height = "500"></canvas>
+	<p>Press NumpadEnter to start the game!</p>
+	<button type="submit" class="btn btn-success" id="Restart">Вийти в початкове меню</button>
+	<button type="submit" class="btn btn-success" id="Again">Make 2 clicks to start the game again</button>
 
-	
 	<script src = "./Classes/Snake.js"></script>
 	<script src = "./Classes/Apple.js"></script>
 	<script src = "./Classes/Block.js"></script>
 	<script src = "./Classes/MainBody.js"></script>
 	<script src = "./Classes/Controls.js"></script>
 	<script src = "https://code.jquery.com/jquery-2.1.0.js"></script>
+	
 
-	<button type="submit" class="btn btn-success" id="Restart">Restart</button>
 
 	<!-- <div>
 		<input type="text" id="key">
 	</div> -->
 
+	
 	<script>
 
 	document.querySelector("#Restart").onclick = function () {
+		window.location.reload();	
+	};
+
+	document.querySelector("#Again").onclick = function () {
 		if (mainBody.isGameOver === true) {
-			ctx.clearRect(0, 0, mainBody.width, mainBody.height);
-			mainBody.gameLoop1();
-		}
-		
+			window.location.reload();
+		}	
+		mainBody.gameLoop();		
 	};	
+	
 
 	document.querySelector("#key").onkeypress = function (event) {
-		console.log("code: " + event.code)
 		if (event.code === "NumpadEnter") {
 			mainBody.gameLoop()
 		}

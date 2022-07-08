@@ -64,7 +64,7 @@ class MainBody {
 	}
 
 	// gameLoop1() {
-	// 		clearTimeout()
+	// 	if (this.isGameOver === false) {
 	// 		setTimeout(()=>{
 	// 			ctx.clearRect(0, 0, this.width, this.height);
 	// 			this.drawScore();
@@ -74,5 +74,6 @@ class MainBody {
 	// 			this.border();
 	// 			this.gameLoop1()
 	// 		}, this.animationTime)
+	// 	};
 	// }
 }
