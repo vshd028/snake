@@ -63,17 +63,4 @@ class MainBody {
 		};
 	}
 
-	// gameLoop1() {
-	// 	if (this.isGameOver === false) {
-	// 		setTimeout(()=>{
-	// 			ctx.clearRect(0, 0, this.width, this.height);
-	// 			this.drawScore();
-	// 			snake.move();
-	// 			snake.draw();
-	// 			apple.draw();
-	// 			this.border();
-	// 			this.gameLoop1()
-	// 		}, this.animationTime)
-	// 	};
-	// }
 }

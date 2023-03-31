@@ -42,12 +42,16 @@ class Snake {
         // }
         if (this.direction === "right") {
             newHead = new Block(head.col + 1, head.row);
+            // console.log("right")
         } else if (this.direction === "down") {
             newHead = new Block(head.col, head.row + 1);
+            // console.log("down")
         } else if (this.direction === "left") {
             newHead = new Block(head.col - 1, head.row);
+            // console.log("left")
         } else if (this.direction === "up") {
             newHead = new Block(head.col, head.row - 1);
+            // console.log("up")
         };
 
         if (this.checkCollision(newHead)) {
